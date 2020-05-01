@@ -2,4 +2,4 @@
 sudo apt update
 
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
-sudo apt install libudunits2-dev libgdal-dev libgeos-dev libproj-dev
+sudo apt install -y --allow-unauthenticated libudunits2-dev libgdal-dev libgeos-dev libproj-dev grass qgis
