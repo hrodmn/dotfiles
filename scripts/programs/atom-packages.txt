@@ -1,2 +1,11 @@
+atom-language-r
+atom-ide-ui
+autocomplete-R
 hydrogen
+ide-r
+language-docker
+language-latex
+language-knitr
+language-markdown
 platformio-ide-terminal
+pretty-json
