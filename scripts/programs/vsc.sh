@@ -9,31 +9,21 @@ sudo apt install -y apt-transport-https
 sudo apt update
 sudo apt install -y code
 rm microsoft.gpg
-ln -s $(pwd)/../../vscode/vsc_settings.json $HOME/.config/Code/User/settings.json
-function install {
-  name="${1}"
-  code --install-extension ${name} --force
-}
-install batisteo.vscode-django
-install be5invis.vscode-custom-css
-install bibhasdn.django-html
-install coenraads.bracket-pair-colorizer
-install davidanson.vscode-markdownlint
-install emmanuelbeziat.vscode-great-icons
-install glen-84.sass-lint
-install HookyQR.beautify
-install jolaleye.horizon-theme-vscode
-install killalau.vscode-liquid-snippets
-install liviuschera.noctis
-install ms-python.python
-install ms-vscode-remote.remote-containers
-install ms-vscode.Go
-install neilding.language-liquid
-install redhat.vscode-yaml
-install rido3.wordcount
-install streetsidesoftware.code-spell-checker
-install victoriadrake.kabukicho
-install vscode-icons-team.vscode-icons
-install yzhang.markdown-all-in-one
-install zxh404.vscode-proto3
 
+# install extensions
+code --install-extension ikuyadeu.r
+code --install-extension reditorsupport.r-lsp
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension github.vscode-pull-request-github
+code --install-extension tht13.html-preview-vscode
+code --install-extension ms-python.python
+code --install-extension ms-vscode-remote.remote-containers
+code --install-extension ms-vscode-remote.vscode-remote-extensionpack
+code --install-extension ivan-bocharov.stan-vscode
+code --install-extension tomoki1207.pdf
+code --install-extension eamodio.gitlens
+
+
+
+# install radian terminal
+pip install -U radian
