@@ -86,3 +86,16 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 
 # ssh
 #ssh-add ~/.ssh/ec2-keypair.pem
+
+# function for building/pushing to pypi
+function pypush {
+  workon sequoia
+  python setup.py bdist_wheel | tee dist/build.log
+
+  if [ "${PIPESTATUS[0]}" -ne "0" ]; then
+    echo Build failed. Aborting.
+  else
+    pybuild_last_built=$(grep -o "dist/[^ ]\+\.whl" dist/build.log)
+    twine upload --repository local $pybuild_last_built
+  fi
+}
