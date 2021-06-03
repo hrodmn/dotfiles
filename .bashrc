@@ -90,6 +90,7 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 # function for building/pushing to pypi
 function pypush {
   workon sequoia
+  rm -rf build
   python setup.py bdist_wheel | tee dist/build.log
 
   if [ "${PIPESTATUS[0]}" -ne "0" ]; then
@@ -99,3 +100,15 @@ function pypush {
     twine upload --repository local $pybuild_last_built
   fi
 }
+
+# gdal
+export OSR_USE_NON_DEPRECATED=NO
+
+# add qgis plugins to PYTHONPATH
+export PYTHONPATH="$PYTHONPATH:/usr/share/qgis/python/plugins:/usr/share/qgis/python"
+
+
+# secrets
+source $HOME/.env
+
+alias launch-bs='workon st_cloud && python -m st_cloud.aws.launch_instance -n henry-bs -t m5.24xlarge -v 100 --no_spot'

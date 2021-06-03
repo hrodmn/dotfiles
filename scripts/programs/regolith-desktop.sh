@@ -9,4 +9,5 @@ sudo apt install -y  \
   i3xrocks-battery \
   i3xrocks-volume \
   i3xrocks-temp \
-  i3xrocks-weather
+  i3xrocks-weather \
+  i3xrocks-memory
