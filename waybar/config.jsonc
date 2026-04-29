@@ -1,0 +1,143 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "idle_inhibitor",
+        "pulseaudio",
+        "custom/vpn",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "battery",
+        "custom/weather",
+        "clock",
+        "custom/power",
+        "tray"
+    ],
+
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": false,
+        "format": "{name}",
+        "on-click": "activate"
+    },
+
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "hyprland/window": {
+        "max-length": 80,
+        "separate-outputs": true
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "\uf0f4",
+            "deactivated": "\uf186"
+        }
+    },
+
+    "tray": {
+        "spacing": 10
+    },
+
+    "clock": {
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "\uf017 {:%H:%M}",
+        "format-alt": "\uf073 {:%Y-%m-%d}"
+    },
+
+    "cpu": {
+        "format": "{usage}% \uf2db",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "{}% \uf1c0"
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}\u00b0C {icon}",
+        "format-icons": ["\uf2cb", "\uf2c9", "\uf2c7"]
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% \uf0e7",
+        "format-plugged": "{capacity}% \uf1e6",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
+    },
+
+    "network": {
+        "interval": 10,
+        "format-wifi": "{icon} \uf063 {bandwidthDownBytes} \uf062 {bandwidthUpBytes}",
+        "format-ethernet": "\uf233 \uf063 {bandwidthDownBytes} \uf062 {bandwidthUpBytes}",
+        "tooltip-format": "{essid}  {signalStrength}%  {ifname} via {gwaddr}",
+        "tooltip-format-ethernet": "{ifname}  {ipaddr}/{cidr}  via {gwaddr}",
+        "format-linked": "\uf127",
+        "format-disconnected": "\u26a0",
+        "format-alt": "{essid}: {ipaddr}/{cidr}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+
+    "custom/vpn": {
+        "exec": "~/.local/bin/vpn-status",
+        "return-type": "json",
+        "interval": 5,
+        "signal": 8,
+        "on-click": "~/.local/bin/vpn-toggle",
+        "tooltip": true
+    },
+
+    "custom/weather": {
+        "exec": "curl -s 'https://wttr.in/?u&format=%c+%t'",
+        "tooltip-command": "curl -s 'https://wttr.in/?u&format=3'",
+        "interval": 1800,
+        "format": "{}",
+        "on-click": "xdg-open 'https://wttr.in'"
+    },
+
+    "custom/power": {
+        "format": "\uf011",
+        "tooltip": false,
+        "on-click": "wlogout --margin-top 350 --margin-bottom 350 --margin-left 650 --margin-right 650"
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} \uf294",
+        "format-bluetooth-muted": "\uf6a9 \uf294",
+        "format-muted": "\uf6a9 {format_source}",
+        "format-source": "{volume}% \uf130",
+        "format-source-muted": "\uf131",
+        "format-icons": {
+            "headphone": "\uf025",
+            "headset": "\uf590",
+            "phone": "\uf095",
+            "portable": "\uf001",
+            "car": "\uf1b9",
+            "default": ["\uf026", "\uf027", "\uf028"]
+        },
+        "on-click": "pavucontrol"
+    }
+}

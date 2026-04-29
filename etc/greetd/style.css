@@ -1,0 +1,61 @@
+/* Cartographic dark theme — matches waybar/hyprland palette */
+
+* {
+    font-family: 'JetBrainsMono Nerd Font', monospace;
+    font-size: 13px;
+}
+
+window {
+    background: transparent;
+    color: #d5cfc6;
+}
+
+box.login-box,
+box {
+    background-color: rgba(28, 28, 28, 0.85);
+    border: 1px solid #303030;
+    border-radius: 6px;
+}
+
+entry {
+    background-color: #252525;
+    color: #d5cfc6;
+    border: 1px solid #303030;
+    border-radius: 4px;
+    padding: 6px 10px;
+    caret-color: #d4783c;
+}
+
+entry:focus {
+    border-color: #d4783c;
+    box-shadow: none;
+}
+
+button {
+    background-color: #424242;
+    color: #d5cfc6;
+    border: 1px solid #303030;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+button:hover {
+    background-color: #d4783c;
+    color: #1c1c1c;
+    border-color: #d4783c;
+}
+
+label {
+    color: #d5cfc6;
+}
+
+label.clock {
+    color: #d4783c;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+combobox button {
+    background-color: #252525;
+    border-color: #303030;
+}

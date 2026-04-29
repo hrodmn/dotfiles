@@ -1,0 +1,307 @@
+/* Cartographic dark theme — inspired by nautical charts and dark basemaps */
+
+@import url("../colors.css");
+
+* {
+    font-family: 'JetBrainsMono Nerd Font', monospace;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @ocean;
+    border-bottom: 2px solid @coastline;
+    color: @parchment;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+button:hover {
+    background: @deep-sea;
+    box-shadow: inset 0 -2px @tidal;
+}
+
+/* ── Workspaces ─────────────────────────────────────────────── */
+
+#workspaces {
+    margin: 2px 2px 6px 2px;
+    background: @deep-sea;
+    border: 1px solid @shelf;
+    border-radius: 4px;
+    padding: 0 2px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: @contour;
+    background: transparent;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background: @shelf;
+    color: @parchment;
+    box-shadow: none;
+}
+
+#workspaces button.active {
+    color: @tidal;
+    background: @coastline;
+    box-shadow: inset 0 -2px @tidal;
+}
+
+#workspaces button.urgent {
+    background: @marker;
+    color: @parchment;
+}
+
+/* ── Window title ───────────────────────────────────────────── */
+
+#window {
+    color: @contour;
+    font-style: italic;
+    padding: 0 10px;
+}
+
+/* ── Submap ─────────────────────────────────────────────────── */
+
+#submap {
+    background: @sand;
+    color: @ocean;
+    padding: 0 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* ── Shared module style ────────────────────────────────────── */
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#tray,
+#idle_inhibitor {
+    padding: 0 10px;
+    margin: 2px 2px 6px 2px;
+    border-radius: 4px;
+    color: @parchment;
+}
+
+/* ── Clock ──────────────────────────────────────────────────── */
+
+#clock {
+    background: @coastline;
+    color: @tidal;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+/* ── CPU — elevation tint ───────────────────────────────────── */
+
+#cpu {
+    background: @deep-sea;
+    color: @vegetation;
+    border: 1px solid @shelf;
+}
+
+#cpu.warning {
+    color: @sand;
+}
+
+#cpu.critical {
+    color: @marker-alt;
+}
+
+/* ── Memory — deep water ────────────────────────────────────── */
+
+#memory {
+    background: @deep-sea;
+    color: @water;
+    border: 1px solid @shelf;
+}
+
+#memory.warning {
+    color: @sand;
+}
+
+#memory.critical {
+    color: @marker-alt;
+}
+
+/* ── Temperature — heat map ─────────────────────────────────── */
+
+#temperature {
+    background: @deep-sea;
+    color: @highland;
+    border: 1px solid @shelf;
+}
+
+#temperature.critical {
+    background: @marker;
+    color: @parchment;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* ── Battery ────────────────────────────────────────────────── */
+
+#battery {
+    background: @deep-sea;
+    color: @vegetation;
+    border: 1px solid @shelf;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @highland;
+    background: @deep-sea;
+}
+
+#battery.warning:not(.charging) {
+    color: @sand;
+}
+
+#battery.critical:not(.charging) {
+    background: @marker;
+    color: @parchment;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: @marker-alt;
+        color: @parchment;
+    }
+}
+
+/* ── Network — ocean blue ───────────────────────────────────── */
+
+#network {
+    background: @deep-sea;
+    color: @tidal;
+    border: 1px solid @shelf;
+}
+
+#network.disconnected {
+    background: @deep-sea;
+    color: @marker-alt;
+    border-color: @marker;
+}
+
+/* ── Audio ──────────────────────────────────────────────────── */
+
+#pulseaudio {
+    background: @deep-sea;
+    color: @sand;
+    border: 1px solid @shelf;
+}
+
+#pulseaudio.muted {
+    color: @contour;
+}
+
+/* ── Idle inhibitor ─────────────────────────────────────────── */
+
+#idle_inhibitor {
+    background: @deep-sea;
+    color: @contour;
+    border: 1px solid @shelf;
+}
+
+#idle_inhibitor.activated {
+    color: @tidal;
+    border-color: @tidal;
+}
+
+/* ── VPN ────────────────────────────────────────────────────── */
+
+#custom-vpn {
+    background: @deep-sea;
+    color: @contour;
+    border: 1px solid @shelf;
+    padding: 0 10px;
+    margin: 2px 2px 6px 2px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+#custom-vpn.connected {
+    color: @water;
+    border-color: @water;
+}
+
+#custom-vpn:hover {
+    color: @tidal;
+    border-color: @tidal;
+}
+
+/* ── Weather ────────────────────────────────────────────────── */
+
+#custom-weather {
+    background: @deep-sea;
+    color: @water;
+    border: 1px solid @shelf;
+    padding: 0 10px;
+    margin: 2px 2px 6px 2px;
+    border-radius: 4px;
+}
+
+/* ── Power ──────────────────────────────────────────────────── */
+
+#custom-power {
+    background: @deep-sea;
+    border: 1px solid @shelf;
+    color: @contour;
+    padding: 0 10px;
+    margin: 2px 2px 6px 2px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+#custom-power:hover {
+    color: @tidal;
+    border-color: @tidal;
+}
+
+/* ── Tray ───────────────────────────────────────────────────── */
+
+#tray {
+    background: @deep-sea;
+    border: 1px solid @shelf;
+    padding: 0 6px;
+    margin: 2px 2px 6px 2px;
+    border-radius: 4px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @marker;
+}
