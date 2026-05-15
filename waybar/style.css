@@ -270,6 +270,33 @@ button:hover {
     border-radius: 4px;
 }
 
+/* ── Power profile ──────────────────────────────────────────── */
+
+#custom-power-profile {
+    background: @deep-sea;
+    color: @contour;
+    border: 1px solid @shelf;
+    padding: 0 10px;
+    margin: 2px 2px 6px 2px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+#custom-power-profile:hover {
+    color: @tidal;
+    border-color: @tidal;
+}
+
+#custom-power-profile.powersave {
+    color: @vegetation;
+    border-color: @vegetation;
+}
+
+#custom-power-profile.performance {
+    color: @marker-alt;
+    border-color: @marker-alt;
+}
+
 /* ── Power ──────────────────────────────────────────────────── */
 
 #custom-power {
