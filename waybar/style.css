@@ -97,7 +97,8 @@ button:hover {
 #network,
 #pulseaudio,
 #tray,
-#idle_inhibitor {
+#idle_inhibitor,
+#custom-bluetooth {
     padding: 0 10px;
     margin: 2px 2px 6px 2px;
     border-radius: 4px;
@@ -238,6 +239,32 @@ button:hover {
 }
 
 /* ── VPN ────────────────────────────────────────────────────── */
+
+#custom-bluetooth {
+    background: @deep-sea;
+    color: @water;
+    border: 1px solid @shelf;
+    transition: all 0.2s ease;
+}
+
+#custom-bluetooth.on {
+    color: @water;
+}
+
+#custom-bluetooth.connected {
+    color: @tidal;
+    border-color: @tidal;
+}
+
+#custom-bluetooth.off,
+#custom-bluetooth.unavailable {
+    color: @contour;
+}
+
+#custom-bluetooth:hover {
+    color: @tidal;
+    border-color: @tidal;
+}
 
 #custom-vpn {
     background: @deep-sea;

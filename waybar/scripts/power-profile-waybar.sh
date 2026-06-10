@@ -9,7 +9,17 @@ log() {
 }
 
 current_profile() {
-    powerprofilesctl get 2>/dev/null || printf 'balanced\n'
+    if command -v powerprofilesctl >/dev/null 2>&1; then
+        powerprofilesctl get 2>/dev/null && return 0
+    elif command -v busctl >/dev/null 2>&1; then
+        busctl --system get-property \
+            org.freedesktop.UPower.PowerProfiles \
+            /org/freedesktop/UPower/PowerProfiles \
+            org.freedesktop.UPower.PowerProfiles \
+            ActiveProfile 2>/dev/null | awk -F'"' 'NR==1 {print $2}' && return 0
+    fi
+
+    printf 'balanced\n'
 }
 
 on_ac_power() {
@@ -63,17 +73,23 @@ print_status() {
 set_profile() {
     local target="$1"
     log "setting profile to $target"
-    powerprofilesctl set "$target"
+
+    if command -v powerprofilesctl >/dev/null 2>&1; then
+        powerprofilesctl set "$target"
+    else
+        busctl --system set-property \
+            org.freedesktop.UPower.PowerProfiles \
+            /org/freedesktop/UPower/PowerProfiles \
+            org.freedesktop.UPower.PowerProfiles \
+            ActiveProfile s "$target"
+    fi
+
     log "profile is now $(current_profile)"
 }
 
-restart_waybar() {
-    log "restarting waybar"
-    (
-        sleep 0.2
-        pkill waybar || true
-        nohup waybar >/dev/null 2>&1 </dev/null &
-    ) >/dev/null 2>&1 &
+refresh_module() {
+    log "refreshing waybar power-profile module"
+    pkill -RTMIN+8 waybar || true
 }
 
 case "${1:-status}" in
@@ -86,7 +102,7 @@ case "${1:-status}" in
             power-saver) set_profile balanced ;;
             *) set_profile power-saver ;;
         esac
-        restart_waybar
+        refresh_module
         ;;
     *)
         printf 'Usage: %s {status|toggle}\n' "$0" >&2

@@ -15,6 +15,7 @@
     "modules-right": [
         "idle_inhibitor",
         "pulseaudio",
+        "custom/bluetooth",
         "custom/vpn",
         "network",
         "cpu",
@@ -100,6 +101,15 @@
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
     },
 
+    "custom/bluetooth": {
+        "exec": "/home/henry/.config/waybar/scripts/bluetooth-waybar.sh status",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "/home/henry/.config/waybar/scripts/bluetooth-waybar.sh toggle",
+        "on-click-right": "blueman-manager",
+        "tooltip": true
+    },
+
     "custom/vpn": {
         "exec": "~/.local/bin/vpn-status",
         "return-type": "json",
@@ -121,6 +131,7 @@
         "exec": "/home/henry/.config/waybar/scripts/power-profile-waybar.sh status",
         "return-type": "json",
         "interval": 5,
+        "signal": 8,
         "on-click": "/usr/bin/env bash -lc '/home/henry/.config/waybar/scripts/power-profile-waybar.sh toggle'",
         "tooltip": true
     },
@@ -133,14 +144,14 @@
 
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} \uf294",
-        "format-bluetooth-muted": "\uf6a9 \uf294",
+        "format-bluetooth": "{volume}% {icon} 󰂯",
+        "format-bluetooth-muted": "\uf6a9 󰂯",
         "format-muted": "\uf6a9 {format_source}",
         "format-source": "{volume}% \uf130",
         "format-source-muted": "\uf131",
         "format-icons": {
             "headphone": "\uf025",
-            "headset": "\uf590",
+            "headset": "\uf025",
             "phone": "\uf095",
             "portable": "\uf001",
             "car": "\uf1b9",
